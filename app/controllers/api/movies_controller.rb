@@ -15,6 +15,7 @@ class Api::MoviesController < ApplicationController
       render json: @movie
     else
       render json: {error: @movie.errors}, status: 422
+    end
   end
 
   def update

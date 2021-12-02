@@ -3,14 +3,13 @@ import axios from "axios"
 
 const Movies = (props) => {
   const [movies, setMovies] = useState([])
+  const [showMovies, setShowMovies] = useState(false)
 
   const getMovies = async () => {
     try {
-      let res = await axios.get(`/api/theaters/${7}/movies`)
+      let res = await axios.get(`/api/theaters/${3}/movies`)
       setMovies(res.data)
-      console.log("movie",res.data)
     } catch (err) {
-      console.log(err)
     }
   }
 
@@ -19,10 +18,11 @@ const Movies = (props) => {
   },[])
 
   const renderMovies = () =>{
-    return movies.map((movie)=>{
+    return movies.map((m)=>{
       return(
         <div>
-          <h1>{movie.name}</h1>
+          <h1>{m.name}</h1>
+            <p>This is the best movie out there. #1!</p>
         </div>
       )
     })
@@ -31,7 +31,12 @@ const Movies = (props) => {
   return(
     <div>
       <h1>Movies</h1>
-      {renderMovies()}
+      <button onClick={() => setShowMovies(!showMovies)}>
+        {!showMovies ? "Show Movies!" : "Hide Movies"}
+      </button>
+      {showMovies &&
+      renderMovies()
+      }
     </div>
   )
 }

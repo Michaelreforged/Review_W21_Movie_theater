@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
+import { useParams } from "react-router";
 
-const Movies = () => {
+const Movies = (props) => {
   const [movies, setMovies] = useState([])
+  const [showMovies, setShowMovies] = useState(false)
+  const params = useParams()
+  console.log(params)
   const getMovies = async () => {
     try {
-      let res = await axios.get(`/api/theaters/${8}/movies`)
+      let res = await axios.get(`/api/theaters/${params.id}/movies`)
       setMovies(res.data)
     } catch (err) {
     }

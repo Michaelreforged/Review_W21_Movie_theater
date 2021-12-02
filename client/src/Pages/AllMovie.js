@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const AllMovie = () =>{
   const [movies, setMovies] = useState([])
 
   const getMovies = async () =>{ 
     try{
-      let res = await axios.get("/api/")
+      let res = await axios.get("/allmovies")
       setMovies(res.data)
     }catch(err){
       console.log(err)
     }
   }
+  useEffect(()=>{
+    getMovies()
+  },[])
+
   const renderMovies = () =>{
     return movies.map((movie)=>{
       return(

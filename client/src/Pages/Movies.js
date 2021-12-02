@@ -7,9 +7,7 @@ const Movies = () => {
     try {
       let res = await axios.get(`/api/theaters/${8}/movies`)
       setMovies(res.data)
-      console.log("movie",res.data)
     } catch (err) {
-      console.log(err)
     }
   }
 
@@ -18,11 +16,11 @@ const Movies = () => {
   },[])
 
   const renderMovies = () =>{
-    return movies.map((movie)=>{
+    return movies.map((m)=>{
       return(
         <div>
-          <h1>{movie.name}</h1>
-          <p>{movie.duration}</p>
+          <h1>{m.name}</h1>
+          <p>{m.duration}</p>
         </div>
       )
     })
@@ -31,7 +29,12 @@ const Movies = () => {
   return(
     <div className="movie">
       <h1>Movies</h1>
-      {renderMovies()}
+      <button onClick={() => setShowMovies(!showMovies)}>
+        {!showMovies ? "Show Movies!" : "Hide Movies"}
+      </button>
+      {showMovies &&
+      renderMovies()
+      }
     </div>
   )
 }

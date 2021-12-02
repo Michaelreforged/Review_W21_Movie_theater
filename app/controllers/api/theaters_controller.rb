@@ -11,6 +11,11 @@ class Api::TheatersController < ApplicationController
 
   def create
     @theater = Theater.create(theater_params)
+    if(@theater.save)
+      render json: @theater
+    else
+      render json: {error: @theater.errors}, status: 422
+    end
   end
 
   def update

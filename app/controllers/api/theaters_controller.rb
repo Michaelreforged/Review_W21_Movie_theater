@@ -10,16 +10,20 @@ class Api::TheatersController < ApplicationController
   end
 
   def create
-
+    @theater = Theater.create(theater_params)
   end
 
   def update
-
+    if(@theater.update(theater_params))
+      render json: @theater
+    else 
+    end
   end
 
   def destroy
-
+    render json: @theater.destroy
   end
+
 
   private
 
@@ -27,4 +31,9 @@ class Api::TheatersController < ApplicationController
   def set_theater
     @theater = Theater.find(params[:id])
   end
+
+  def theater_params
+    parmas.require(:theater).permit(:name,:loc)
+  end
+
 end

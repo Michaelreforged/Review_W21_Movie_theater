@@ -1,5 +1,5 @@
 class Api::MoviesController < ApplicationController
-  before_action :set_theater
+  before_action :set_theater, except: [:allmovies]
   before_action :set_movie, only: [:show, :destroy, :update]
 
   def index
@@ -29,6 +29,10 @@ class Api::MoviesController < ApplicationController
   def destroy
     render json: @movie.destroy
   end
+
+  def allmovies
+    render json: Movie.all.order(:id)
+  end 
 
   private
   

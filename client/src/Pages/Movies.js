@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { useParams } from "react-router";
+import GetProps from "../Components/GetProps"
 
-const Movies = (props) => {
+const Movies = ({navigate}) => {
   const [movies, setMovies] = useState([])
   const [showMovies, setShowMovies] = useState(false)
   const params = useParams()
   console.log(params)
+  let p = GetProps();
+  console.log(p)
   const getMovies = async () => {
     try {
       let res = await axios.get(`/api/theaters/${params.id}/movies`)
       setMovies(res.data)
+      console.log(res)
     } catch (err) {
     }
   }
@@ -22,7 +26,7 @@ const Movies = (props) => {
   const renderMovies = () =>{
     return movies.map((m)=>{
       return(
-        <div>
+        <div key={m.id}>
           <h1>{m.name}</h1>
           <p>{m.duration}</p>
         </div>
@@ -39,6 +43,7 @@ const Movies = (props) => {
       {showMovies &&
       renderMovies()
       }
+      <a onClick={()=>{navigate('/theaters')}}>alksdfj;alsjflasjf</a>
     </div>
   )
 }

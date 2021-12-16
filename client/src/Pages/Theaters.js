@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 
-const Theaters = () => {
+const Theaters = (props) => {
   const [theaters, setTheaters] = useState([])
-
+  console.log("props",props)
   const getTheaters = async () => {
     try {
       let res = await axios.get("/api/theaters")
@@ -21,7 +21,7 @@ const Theaters = () => {
   const renderTheaters = () =>{
     return theaters.map((theater) =>{
       return(
-        <div>
+        <div key={theater.id}>
           <h1>{theater.name}</h1>
         </div>
       )

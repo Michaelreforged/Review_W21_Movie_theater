@@ -19,7 +19,7 @@ const AllMovie = () =>{
   const renderMovies = () =>{
     return movies.map((movie)=>{
       return(
-        <div>
+        <div key={movie.id}>
           {movie.name}
         </div>
       )

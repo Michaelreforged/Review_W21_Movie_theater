@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router";
 import Navbar from "./Components/Navbar";
 import AllMovie from "./Pages/AllMovie";
 import Home from "./Pages/Home";
-import Movies from "./Pages/Movies";
-import Theaters from "./Pages/Theaters";
+import NoMatch from "./Pages/NoMatch";
+import TheatersRoutes from "./Routes/TheatersRoutes";
 
 
 function App() {
@@ -12,9 +12,9 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/Theaters" element={<Theaters/>}/>
-      <Route path="/Theaters/:id/movies" element={<Movies/>}/>
-      <Route path="/Movies" element={<AllMovie/>}/>
+      <Route path="Theaters/*" element={<TheatersRoutes/>}/>
+      <Route path="Movies" element={<AllMovie/>}/>
+      <Route path="*" element={<NoMatch/>}/>
     </Routes>
     </>
   );

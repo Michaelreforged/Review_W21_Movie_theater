@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components"
+import { Imagestd } from "./Styles";
 import Squirtle from "./Images/Squirtle.webp"
 import Charmander from "./Images/Charmander.webp"
 import Bulbasaur from "./Images/Bulbasaur.webp"
@@ -23,7 +23,5 @@ const RPSReducer = () =>{
     </div>
   )
 }
-const Imagestd = styled.img`
-max-height: 150px;
-`
+
 export default RPSReducer

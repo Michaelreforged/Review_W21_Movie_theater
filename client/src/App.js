@@ -9,8 +9,9 @@ import Games from "./Pages/Fun/Games"
 
 function App() {
   return (
-    <div style={{padding:"0px 20px 0px 20px"}}>
+    <>
     <Navbar/>
+    <div style={{padding:"0px 40px 0px 40px"}}>
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="Theaters/*" element={<TheatersRoutes/>}/>
@@ -19,6 +20,7 @@ function App() {
       <Route path="*" element={<NoMatch/>}/>
     </Routes>
     </div>
+    </>
   );
 }
 

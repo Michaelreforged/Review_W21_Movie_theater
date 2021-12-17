@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import { NavA, NavbarOptions, NavBarStyle } from "./Style/Styles";
 
 const Navbar = () =>{
@@ -11,9 +10,9 @@ const Navbar = () =>{
   ]
 
   const games = [
-    {path:"/Games/BlackJack", Name: "BlackJack"},
     {path:"/Games/RPSWIf", Name: "RPS with If"},
     {path:"/Games/RPSWSwitch", Name: "RPS with Switch"},
+    {path:"/Games/RPSReducer", Name: "RPS with reducer"},
   ]
 
   const MainOptions = () =>{

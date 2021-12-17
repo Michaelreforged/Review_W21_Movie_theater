@@ -14,7 +14,6 @@ const Movies = ({navigate}) => {
     try {
       let res = await axios.get(`/api/theaters/${params.id}/movies`)
       setMovies(res.data)
-      console.log(res)
     } catch (err) {
     }
   }

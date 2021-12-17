@@ -9,8 +9,8 @@ function TheatersRoutes() {
   return (
     <>
     <Routes>
-    <Route path="/" element={<Theaters/>}/>
-    <Route path=":id/movies" element={WithLN(Movies)}/>
+    <Route path="/" element={WithLN(Theaters)}/>
+    <Route path=":id/" element={WithLN(Movies)}/>
     <Route path="*" element={<NoMatch/>}/>
     </Routes>
     </>

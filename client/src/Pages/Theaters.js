@@ -22,7 +22,7 @@ const Theaters = (props) => {
     return theaters.map((theater) =>{
       return(
         <div key={theater.id}>
-          <h1>{theater.name}</h1>
+          <h1 onClick={()=>{props.navigate(`/Theaters/${theater.id}/`)}}>{theater.name}</h1>
         </div>
       )
     })

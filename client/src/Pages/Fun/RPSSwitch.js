@@ -11,9 +11,7 @@ const RPSWSwitch = () =>{
   const options =  ["r", "p", "s"];
 
   useEffect(()=>{
-    console.log(player, comp)
-    win()
-    
+    win()    
   },[player])
 
   const renderWinner = () =>{

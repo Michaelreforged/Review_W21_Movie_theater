@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import MovieCard from "../Components/MovieCard";
 
 const AllMovie = () =>{
   const [movies, setMovies] = useState([])
@@ -12,6 +13,7 @@ const AllMovie = () =>{
       console.log(err)
     }
   }
+
   useEffect(()=>{
     getMovies()
   },[])
@@ -20,7 +22,7 @@ const AllMovie = () =>{
     return movies.map((movie)=>{
       return(
         <div key={movie.id}>
-          {movie.name}
+          <MovieCard info = {movie} />
         </div>
       )
     })

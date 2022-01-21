@@ -24,7 +24,7 @@ spiderman4 = Movie.create(name:"The Amazing Spider-Man", duration:"3 hours", the
 
 @theater = [theater1,theater2,theater3]
 
-100.times do 
+200.times do 
   Movie.create(name: Faker::Movie.title, duration: @times[rand(0..9)], theater_id: @theater[rand(0..2)].id)
 end
 

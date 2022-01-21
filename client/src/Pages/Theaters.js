@@ -3,12 +3,11 @@ import axios from "axios"
 
 const Theaters = (props) => {
   const [theaters, setTheaters] = useState([])
-  console.log("props",props)
+
   const getTheaters = async () => {
     try {
       let res = await axios.get("/api/theaters")
       setTheaters(res.data)
-      console.log("theaters",res.data)
     } catch (err) {
       console.log(err)
     }

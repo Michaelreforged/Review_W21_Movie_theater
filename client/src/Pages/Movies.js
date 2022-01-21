@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
-import { useParams } from "react-router";
 import GetProps from "../Components/GetProps"
+import MovieCard from "../Components/MovieCard";
 
 const Movies = ({navigate}) => {
   const [movies, setMovies] = useState([])
   const [showMovies, setShowMovies] = useState(false)
-  const params = useParams()
-  console.log(params)
+
   let p = GetProps();
   console.log(p)
+
   const getMovies = async () => {
     try {
-      let res = await axios.get(`/api/theaters/${params.id}/movies`)
+      let res = await axios.get(`/api/theaters/${p[2].id}/movies`)
       setMovies(res.data)
     } catch (err) {
     }
@@ -20,29 +20,29 @@ const Movies = ({navigate}) => {
 
   useEffect(()=>{
     getMovies()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const renderMovies = () =>{
     return movies.map((m)=>{
       return(
-        <div key={m.id}>
-          <h1>{m.name}</h1>
-          <p>{m.duration}</p>
-        </div>
+          <MovieCard info = {m} key={m.id}/>
       )
     })
   }
 
   return(
-    <div className="movie">
+    <div>
       <h1>Movies</h1>
       <button onClick={() => setShowMovies(!showMovies)}>
         {!showMovies ? "Show Movies!" : "Hide Movies"}
       </button>
+      <div style={{display:"flex",flexWrap:"wrap"}}>
       {showMovies &&
       renderMovies()
-      }
-      <a onClick={()=>{navigate('/theaters')}}>alksdfj;alsjflasjf</a>
+    }
+    </div>
+      <button onClick={()=>{navigate('/theaters')}}>Return</button>
     </div>
   )
 }

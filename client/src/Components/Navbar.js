@@ -16,9 +16,9 @@ const Navbar = () =>{
   ]
 
   const MainOptions = () =>{
-    return routes.map((format) =>{
+    return routes.map((format, ind) =>{
       return(
-        <NavbarOptions>
+        <NavbarOptions key={ind}>
           <NavA href={format.path}>{format.Name}</NavA>
         </NavbarOptions>
       )
@@ -26,9 +26,9 @@ const Navbar = () =>{
   }
 
   const Games = () => {
-    return games.map((format) =>{
+    return games.map((format,ind) =>{
       return(
-        <NavbarOptions>
+        <NavbarOptions key={ind}>
           <NavA href={format.path}>{format.Name}</NavA>
         </NavbarOptions>
       )

@@ -1,7 +1,7 @@
 class Api::MoviesController < ApplicationController
   before_action :set_theater, except: [:allmovies]
   before_action :set_movie, only: [:show, :destroy, :update]
-
+  before_action :pagination, only: [:allmovies]
   def index
     render json: @theater.movies.all
   end
@@ -31,7 +31,8 @@ class Api::MoviesController < ApplicationController
   end
 
   def allmovies
-    render json: Movie.all.order(:id)
+    count = Movie.count
+    render json: {movie: Movie.page(@page).per(@per) , count: count, per:@per}
   end 
 
   private
@@ -48,4 +49,8 @@ class Api::MoviesController < ApplicationController
     params.require(:movie).permit(:name,:duration,:theater_id)
   end
 
+  def pagination
+    @page = params[:page] || 1
+    @per = params[:per] || 20
+  end
 end

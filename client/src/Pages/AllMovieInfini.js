@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../Components/MovieCard";
 
-const AllMovie = () =>{
+const AllMovieInfini = () =>{
   const [movies, setMovies] = useState([])
   const [count, setCount] = useState("")
   const [page, setPage] = useState(2)
@@ -48,4 +48,4 @@ const AllMovie = () =>{
   )
 }
 
-export default AllMovie
+export default AllMovieInfini

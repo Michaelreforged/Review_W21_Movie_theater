@@ -7,6 +7,8 @@ const Navbar = () =>{
     {path: "/", Name: "Home" },
     {path: "/Theaters", Name: "Theaters" },
     {path: "/Movies", Name: "Movies" },
+    {path: "/MoviesPage", Name: "Movies Pagination" },
+    {path: "/MoviesInfini", Name: "Movies Infnite Scroll" },
   ]
 
   const games = [

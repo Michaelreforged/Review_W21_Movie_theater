@@ -2,31 +2,45 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../Components/MovieCard";
 
-const AllMovie = () =>{
+const AllMoviePage = () =>{
   const [movies, setMovies] = useState([])
-  const [count, setCount] = useState("")
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(null)
+  const [count, setCount] = useState(null)
+  const [per, setPer] = useState(null)
 
   const getMovies = async () =>{ 
     try{
       let res = await axios.get("/allmovies")
       setMovies(res.data.movie)
       setCount(res.data.count)
+      setPer(res.data.per)
+      console.log(res.data.count,res.data.per)
     }catch(err){
       console.log(err)
     }
   }
 
-  const getMoreMovies = async () => {
+  const pageMovie = async (page) => {
     try{
       let res = await axios.get(`/allmovies?page=${page}`)
-      setMovies((prevState)=>[...prevState, ...res.data.movie])
-      setPage((prev)=> prev+1)
+      setMovies(res.data.movie)
     }catch(err){
       console.log(err)
     }
   }
 
+  const pageButton = () => {
+    const numPage = Math.ceil(count/per);
+    const buttonarr = [];
+    for(let i = 1; i <= numPage; i++){
+      buttonarr.push(
+        <button onClick={()=>pageMovie(i)}>{i}</button>
+      )
+    }
+    return buttonarr
+  } 
+
+  
   useEffect(()=>{
     getMovies()
   },[])
@@ -42,10 +56,10 @@ const AllMovie = () =>{
   }
   return(
     <div>
+      {pageButton()}
       {renderMovies()}
-      {count === movies.length ? <h1>No More Movies</h1> : <button onClick={()=>{getMoreMovies()}}>More Movies</button>}
     </div>
   )
 }
 
-export default AllMovie
+export default AllMoviePage

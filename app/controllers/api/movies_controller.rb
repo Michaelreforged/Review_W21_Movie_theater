@@ -1,6 +1,7 @@
 class Api::MoviesController < ApplicationController
   before_action :set_theater, except: [:allmovies]
   before_action :set_movie, only: [:show, :destroy, :update]
+  before_action :page, only:[:allmovies]
 
   def index
     render json: @theater.movies.all
@@ -31,10 +32,16 @@ class Api::MoviesController < ApplicationController
   end
 
   def allmovies
-    render json: Movie.all.order(:id)
+    count = Movie.count
+    render json: {movie: Movie.page(@page).per(@per), count:count, per:@per}
   end 
 
   private
+
+  def page
+    @page = params[:page] || 1
+    @per = params[:per] || 50
+  end
   
   def set_theater
     @theater = Theater.find(params[:theater_id])

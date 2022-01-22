@@ -1,7 +1,6 @@
 import React from "react";
 
 const MovieCard = ({info}) => {
-  console.log("moviecard",info)
 
   return(
     <div style={{display:"flex",flexDirection:"column",flexBasis:"25%",padding:"20px",border:"1px solid black"}}>
